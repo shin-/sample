@@ -5,7 +5,7 @@ RUN pip install -U pip
 COPY requirements.txt /app
 RUN pip install -r requirements.txt
 COPY setup.py /app
-COPY sample /app/sample
+COPY sample /app/sample/
 RUN pip install .
 
 FROM build AS lint
@@ -17,7 +17,7 @@ CMD ["./sample"]
 FROM build AS test
 COPY requirements-test.txt /app
 RUN pip install -r requirements-test.txt
-COPY tests /app
+COPY tests /app/tests/
 ENTRYPOINT ["py.test"]
 CMD ["-v", "./tests"]
 
